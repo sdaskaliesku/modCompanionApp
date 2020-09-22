@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="732.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manson.fo76.Controller">
+  <AnchorPane prefHeight="712.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <TextField fx:id="fo76Path" layoutX="191.0" layoutY="14.0" prefHeight="25.0" prefWidth="429.0" />
+    <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="48.0" prefHeight="38.0" prefWidth="606.0" progress="0.0" />
+    <Label layoutX="14.0" layoutY="18.0" text="Path to Fallout 76 Data directory" />
+    <TextArea fx:id="logsTxt" editable="false" layoutX="11.0" layoutY="379.0" prefHeight="333.0" prefWidth="618.0" />
+    <Button fx:id="startBtn" layoutX="14.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Start" />
+    <Button fx:id="stopBtn" layoutX="98.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Stop" />
+    <Button fx:id="outputBtn" layoutX="314.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="183.0" text="Open Output directory" />
+    <Label layoutX="14.0" layoutY="349.0" text="Logs" />
+    <TabPane fx:id="modSettingsTabPane" layoutX="13.0" layoutY="103.0" prefHeight="200.0" prefWidth="606.0" tabClosingPolicy="UNAVAILABLE">
+    </TabPane>
+  </AnchorPane>
+</VBox>
