@@ -1,13 +1,14 @@
 package com.manson.fo76.processor.definitions.itemextractor.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.apache.commons.lang3.builder.ToStringBuilder
 import org.apache.commons.lang3.builder.ToStringStyle
 
-class ItemDescriptor : AbstractObject() {
-    var ownerInfo: OwnerInfo? = null
+@JsonIgnoreProperties(ignoreUnknown = true)
+class ItemDescriptor {
     var text: String? = null
-    var serverHandleId: Long? = null
+    var serverHandleId: Long = -1
     var count: Int? = null
     var itemValue: Int = 0
     var filterFlag: Int? = null
@@ -30,11 +31,11 @@ class ItemDescriptor : AbstractObject() {
     var isLegendary: Boolean = false
 
     @JsonProperty("ItemCardEntries")
-    var itemCardEntries: List<ItemCardEntry>? = null
-    var vendingData: VendingData? = null
+    var itemCardEntries: ArrayList<ItemCardEntry> = ArrayList()
+    var vendingData: VendingData = VendingData()
 
     @JsonProperty("ModCardEntries")
-    var modCardEntries: List<ModCardEntry>? = null
+    var modCardEntries: ArrayList<ModCardEntry> = ArrayList()
 
     override fun toString(): String {
         return ToStringBuilder(this, ToStringStyle.NO_CLASS_NAME_STYLE)
@@ -52,9 +53,7 @@ class ItemDescriptor : AbstractObject() {
         if (this === other) return true
         if (other !is ItemDescriptor) return false
 
-        if (ownerInfo != other.ownerInfo) return false
         if (text != other.text) return false
-        if (serverHandleId != other.serverHandleId) return false
         if (count != other.count) return false
         if (itemValue != other.itemValue) return false
         if (filterFlag != other.filterFlag) return false
@@ -82,9 +81,8 @@ class ItemDescriptor : AbstractObject() {
     }
 
     override fun hashCode(): Int {
-        var result = ownerInfo?.hashCode() ?: 0
-        result = 31 * result + (text?.hashCode() ?: 0)
-        result = 31 * result + (serverHandleId?.hashCode() ?: 0)
+        var result = text?.hashCode() ?: 0
+//        result = 31 * result + (serverHandleId?.hashCode() ?: 0)
         result = 31 * result + (count ?: 0)
         result = 31 * result + itemValue
         result = 31 * result + (filterFlag ?: 0)
@@ -104,9 +102,9 @@ class ItemDescriptor : AbstractObject() {
         result = 31 * result + isSetItem.hashCode()
         result = 31 * result + isQuestItem.hashCode()
         result = 31 * result + isLegendary.hashCode()
-        result = 31 * result + (itemCardEntries?.hashCode() ?: 0)
-        result = 31 * result + (vendingData?.hashCode() ?: 0)
-        result = 31 * result + (modCardEntries?.hashCode() ?: 0)
+        result = 31 * result + itemCardEntries.hashCode()
+        result = 31 * result + vendingData.hashCode()
+        result = 31 * result + modCardEntries.hashCode()
         return result
     }
 }

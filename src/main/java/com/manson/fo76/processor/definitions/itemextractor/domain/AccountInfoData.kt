@@ -1,5 +1,8 @@
 package com.manson.fo76.processor.definitions.itemextractor.domain
 
-class AccountInfoData : AbstractObject() {
-    var name: String? = null
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class AccountInfoData {
+    var name: String = ""
 }

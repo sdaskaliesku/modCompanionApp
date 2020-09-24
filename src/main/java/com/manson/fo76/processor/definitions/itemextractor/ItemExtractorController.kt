@@ -9,7 +9,7 @@ import javafx.scene.control.Tab
 import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.AnchorPane
 
-class ItemExtractorController(settingsService: SettingsService?) : ModGuiController(settingsService) {
+class ItemExtractorController(settingsService: SettingsService) : ModGuiController(settingsService) {
     private val layoutYStep = 24.0
     private var initialLayoutY = 14.0
     private val layoutX = 16.0

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.PropertyAccessor
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.manson.fo76.Locations.itemExtractorFilter
+import com.manson.fo76.Locations.itemsModInitFilter
 import com.manson.fo76.processor.ProcessorFactory
 import com.manson.fo76.processor.ProcessorFactory.init
 import com.manson.fo76.settings.SettingsService
@@ -54,7 +54,7 @@ class Controller {
     private var modSettingsTabPane: TabPane? = null
 
     private val settingsService: SettingsService = SettingsService(OM, Locations.settingsDirectory)
-    private val fileChangesListener: FileChangesListener = FileChangesListener(itemExtractorFilter)
+    private val fileChangesListener: FileChangesListener = FileChangesListener(itemsModInitFilter, OM)
 
 
     @FXML

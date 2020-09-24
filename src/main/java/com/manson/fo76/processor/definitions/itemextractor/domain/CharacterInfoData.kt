@@ -1,6 +1,9 @@
 package com.manson.fo76.processor.definitions.itemextractor.domain
 
-class CharacterInfoData : AbstractObject() {
-    var name: String? = null
-    var level: Int? = null
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class CharacterInfoData {
+    var name: String = ""
+    var level: Int = 0
 }
