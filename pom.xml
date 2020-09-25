@@ -6,7 +6,7 @@
 
   <groupId>com.manson.fo76</groupId>
   <artifactId>modCompanion</artifactId>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
 
   <repositories>
     <repository>
