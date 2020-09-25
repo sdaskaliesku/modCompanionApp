@@ -4,7 +4,7 @@
 
   <groupId>com.manson.fo76</groupId>
   <artifactId>modCompanion</artifactId>
-  <version>1.2</version>
+  <version>1.3-SNAPSHOT</version>
 
   <repositories>
     <repository>
@@ -254,7 +254,7 @@
     <connection>scm:git:ssh://git@github.com/sdaskaliesku/modCompanionApp.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/sdaskaliesku/modCompanionApp.git
     </developerConnection>
-    <tag>modCompanion-1.2</tag>
+    <tag>HEAD</tag>
   </scm>
 
 
