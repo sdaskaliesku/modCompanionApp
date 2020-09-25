@@ -172,5 +172,12 @@
     </plugins>
   </build>
 
+  <scm>
+    <url>https://github.com:sdaskaliesku/modCompanionApp</url>
+    <connection>scm:git:ssh://git@github.com/sdaskaliesku/modCompanionApp.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/sdaskaliesku/modCompanionApp.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
 
 </project>
