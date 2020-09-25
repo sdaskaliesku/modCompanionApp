@@ -1,0 +1,1 @@
+mvn clean release:clean release:prepare release:perform release:clean
