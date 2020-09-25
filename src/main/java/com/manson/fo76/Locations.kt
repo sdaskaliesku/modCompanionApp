@@ -10,7 +10,7 @@ object Locations {
 
     val itemsModInitFilter: Filter<Path> = Filter { path: Path -> path.endsWith(itemsModIniInputFile) }
 
-    private val currentDirectory: File = File(Locations::class.java.protectionDomain.codeSource.location.toURI())
+    private val currentDirectory: File = File(System.getProperty("user.dir"))
 
     val outputDirectory: File
         get() {
