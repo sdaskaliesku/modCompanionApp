@@ -7,7 +7,6 @@ import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.stage.Stage
-import javafx.stage.WindowEvent
 
 class Main : Application() {
     @Throws(Exception::class)
@@ -16,7 +15,7 @@ class Main : Application() {
         val fxmlLoader = FXMLLoader(loader.getResource("mainForm.fxml"))
         val root = fxmlLoader.load<Parent>()
         val controller: Controller = fxmlLoader.getController()
-        stage.onHidden = EventHandler { e: WindowEvent? -> controller.shutdown() }
+        stage.onHidden = EventHandler { controller.shutdown() }
         val scene = Scene(root)
         stage.scene = scene
         stage.isResizable = false

@@ -15,6 +15,7 @@ import java.io.File
 import java.nio.file.Path
 import java.text.SimpleDateFormat
 import java.util.Date
+import org.slf4j.LoggerFactory
 
 class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsService: SettingsService) : BaseProcessor(MOD_NAME, settingsService) {
 
@@ -43,9 +44,29 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
         return modData
     }
 
+    class UserInfo {
+        var charName: String = ""
+        var accName: String = ""
+    }
+
+    private fun getUserInfo(modData: ModData): UserInfo {
+        val userInfo = UserInfo()
+        val inventory = modData.characterInventories.values.first()
+        userInfo.accName = inventory.accountInfoData.name
+        userInfo.charName = inventory.characterInfoData.name
+        return userInfo
+    }
+
     override fun processFileChanges(modEntity: BaseModEntity) {
         if (modEntity !is ModData || modEntity.isEmpty()) {
             return
+        }
+        try {
+            val userInfo = getUserInfo(modEntity)
+            TxtLogger.log("Processing items for character: ${userInfo.charName} from account: ${userInfo.accName}")
+        } catch (e: Exception) {
+            TxtLogger.log("Error while getting acc/char info: $e")
+            LOGGER.error("Error while getting acc/char info", e)
         }
         var objectToDump = modEntity
         var dumpLocation: File = getSingleOutputFile()
@@ -62,7 +83,7 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
         dumpData(dumpLocation, objectToDump)
     }
 
-    private fun retrieveMultipleOutputFile(modEntity: ModData) : File {
+    private fun retrieveMultipleOutputFile(modEntity: ModData): File {
         val inventory = modEntity.characterInventories.values.first()
         val charName = inventory.characterInfoData.name
         val accName = inventory.accountInfoData.name
@@ -103,8 +124,7 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
             }
             objectMapper.writer().withDefaultPrettyPrinter().writeValue(file, obj)
         } catch (e: Exception) {
-            // TODO: setup logger and get rid of printStackTrace() everywhere
-            e.printStackTrace()
+            LOGGER.error("Error creating dump file", e)
             TxtLogger.log("Error creating dump file: ${e.message}")
         }
     }
@@ -126,13 +146,14 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
         try {
             return objectMapper.readValue(path.toFile(), ModData::class.java)
         } catch (e: Exception) {
+            LOGGER.error("Error reading previous dump file", e)
             TxtLogger.log("Error reading previous dump file: ${e.message}")
-            e.printStackTrace()
         }
         return ModData()
     }
 
     companion object {
+        private val LOGGER = LoggerFactory.getLogger(ItemExtractorProcessor::class.java)
         const val MOD_NAME = "ItemExtractorMod"
 
         private const val outputFileName = "${MOD_NAME}.json"

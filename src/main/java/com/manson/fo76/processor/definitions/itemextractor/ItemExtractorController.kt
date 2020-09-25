@@ -20,6 +20,7 @@ class ItemExtractorController(settingsService: SettingsService) : ModGuiControll
         initialLayoutY += layoutYStep
         anonymizeCheckBox.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, newValue: Boolean ->
             settingsService.settings.itemExtractorSettings.anonymize = newValue
+            settingsService.save()
         }
         anonymizeCheckBox.isSelected = settingsService.settings.itemExtractorSettings.anonymize
 
@@ -42,9 +43,11 @@ class ItemExtractorController(settingsService: SettingsService) : ModGuiControll
 
         multipleDumpRadio.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, _: Boolean ->
             settingsService.settings.itemExtractorSettings.dumpMode = DumpMode.CREATE_NEW
+            settingsService.save()
         }
         singleDumpRadio.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, _: Boolean ->
             settingsService.settings.itemExtractorSettings.dumpMode = DumpMode.APPEND
+            settingsService.save()
         }
         when (settingsService.settings.itemExtractorSettings.dumpMode) {
             DumpMode.APPEND -> singleDumpRadio.isSelected = true
@@ -54,7 +57,7 @@ class ItemExtractorController(settingsService: SettingsService) : ModGuiControll
     }
 
     override fun createModSettingsTab(): Tab {
-        val tab = Tab("ItemExtractorMod")
+        val tab = Tab(ItemExtractorProcessor.MOD_NAME)
         tab.isClosable = false
         val anchorPane = AnchorPane()
         anchorPane.prefHeight = 171.0

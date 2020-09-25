@@ -26,14 +26,14 @@ object ProcessorFactory {
         addProcessor(Fed76EnhancerProcessor.MOD_NAME, Fed76EnhancerProcessor(objectMapper, settingsService), Fed76EnhancerController(settingsService))
     }
 
-    fun <T : BaseProcessor?> addProcessor(name: String, baseProcessor: T, modGuiController: ModGuiController) {
+    fun <T : BaseProcessor> addProcessor(name: String, baseProcessor: T, modGuiController: ModGuiController) {
         MOD_TYPES.add(name)
-        MOD_PROCESSORS[name] = baseProcessor!!
+        MOD_PROCESSORS[name] = baseProcessor
         MOD_GUI_SETTINGS[name] = modGuiController
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : BaseProcessor?> getProcessor(modName: String): T? {
-        return MOD_PROCESSORS[modName] as T?
+    fun <T : BaseProcessor> getProcessor(modName: String): T? {
+        return MOD_PROCESSORS[modName] as T
     }
 }

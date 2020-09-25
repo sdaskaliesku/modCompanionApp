@@ -7,7 +7,6 @@ import com.manson.fo76.processor.BaseModEntity
 import com.manson.fo76.processor.BaseProcessor
 import com.manson.fo76.processor.ProcessorFactory
 import java.io.File
-import java.io.FileReader
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.math.abs
@@ -58,7 +57,7 @@ class FileChangesListener(private val filter: Filter<Path>, private val objectMa
             processor.processFileChanges(modEntity)
             TxtLogger.log("File changes processed!")
         } catch (e: Exception) {
-            e.printStackTrace()
+            LOGGER.error("File changes weren't processed", e)
             TxtLogger.log("File changes weren't processed: ${e.message}")
         } finally {
             Files.deleteIfExists(path)
@@ -67,6 +66,9 @@ class FileChangesListener(private val filter: Filter<Path>, private val objectMa
 
     fun stop() {
         try {
+            if (watchService == null) {
+                return
+            }
             watchService?.stop()
         } catch (e: Exception) {
             LOGGER.error("Error while stopping watch service", e)
@@ -87,7 +89,7 @@ class FileChangesListener(private val filter: Filter<Path>, private val objectMa
             return objectMapper.readValue(path.toFile(), BaseModEntity::class.java)
         } catch (e: Exception) {
             TxtLogger.log("Error while reading input file: ${e.message}")
-            e.printStackTrace()
+            LOGGER.error("Error while reading input file", e)
         }
         return BaseModEntity()
     }

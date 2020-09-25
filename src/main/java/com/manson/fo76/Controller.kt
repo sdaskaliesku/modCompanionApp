@@ -20,10 +20,12 @@ import javafx.scene.control.ProgressBar
 import javafx.scene.control.TabPane
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
+import org.slf4j.LoggerFactory
 
 class Controller {
     companion object {
         val OM = ObjectMapper()
+        private val LOGGER = LoggerFactory.getLogger(Controller::class.java)
 
         init {
             OM.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
@@ -59,6 +61,7 @@ class Controller {
 
     @FXML
     fun initialize() {
+        LOGGER.error("Init!")
         init(OM, settingsService)
         ProcessorFactory.MOD_GUI_SETTINGS.values.forEach { modSettingsTabPane?.tabs?.add(it.createModSettingsTab()) }
         logsTxt?.let { TxtLogger.init(it) }
@@ -97,14 +100,9 @@ class Controller {
     }
 
     fun shutdown() {
-        fileChangesListener.stop()
         settingsService.save()
+        fileChangesListener.stop()
         Platform.exit()
     }
 
-//    private fun retrieveDumpMode(): DumpMode {
-//        return if (singleFileRadio!!.isSelected) {
-//            DumpMode.APPEND
-//        } else DumpMode.CREATE_NEW
-//    }
 }
