@@ -22,6 +22,7 @@
     <slf4j.version>2.0.0-alpha1</slf4j.version>
     <log4j.version>2.13.3</log4j.version>
     <kotlin.version>1.4.10</kotlin.version>
+    <maven.install.skip>true</maven.install.skip>
   </properties>
 
   <dependencies>
@@ -182,6 +183,8 @@
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.4</version>
         <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <createSourcesJar>false</createSourcesJar>
           <transformers>
             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
               <manifestEntries>
@@ -198,6 +201,31 @@
             <goals>
               <goal>shade</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.akathist.maven.plugins.launch4j</groupId>
+        <artifactId>launch4j-maven-plugin</artifactId>
+        <!--suppress MavenModelInspection -->
+        <version>1.7.25</version>
+        <executions>
+          <execution>
+            <id>l4j-gui</id>
+            <phase>package</phase>
+            <goals><goal>launch4j</goal></goals>
+            <configuration>
+              <icon>src/main/resources/favicon.ico</icon>
+              <headerType>gui</headerType>
+              <outfile>target/ModCompanion-${project.version}.exe</outfile>
+              <jar>target/ModCompanion-${project.version}.jar</jar>
+              <classPath>
+                <mainClass>com.manson.fo76.Main</mainClass>
+              </classPath>
+              <jre>
+                <minVersion>1.8.0</minVersion>
+              </jre>
+            </configuration>
           </execution>
         </executions>
       </plugin>

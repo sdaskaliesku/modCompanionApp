@@ -19,7 +19,7 @@
       <directory>${project.build.directory}</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>ModCompanion-*.jar</include>
+        <include>ModCompanion*.exe</include>
       </includes>
     </fileSet>
   </fileSets>
