@@ -10,13 +10,12 @@ import com.manson.fo76.processor.definitions.logger.LoggerProcessor
 import com.manson.fo76.processor.gui.ModGuiController
 import com.manson.fo76.settings.SettingsService
 import java.util.HashMap
-import java.util.HashSet
 
 object ProcessorFactory {
+    // TODO: Create smth like ModDescriptor and hold Processor and Controller inside
     @JvmField
     val MOD_PROCESSORS: MutableMap<String, BaseProcessor> = HashMap()
-    @JvmField
-    val MOD_TYPES: MutableSet<String> = HashSet()
+
     @JvmField
     val MOD_GUI_SETTINGS: MutableMap<String, ModGuiController> = HashMap()
 
@@ -27,7 +26,6 @@ object ProcessorFactory {
     }
 
     fun <T : BaseProcessor> addProcessor(name: String, baseProcessor: T, modGuiController: ModGuiController) {
-        MOD_TYPES.add(name)
         MOD_PROCESSORS[name] = baseProcessor
         MOD_GUI_SETTINGS[name] = modGuiController
     }

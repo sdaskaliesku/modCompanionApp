@@ -61,7 +61,6 @@ class Controller {
 
     @FXML
     fun initialize() {
-        LOGGER.error("Init!")
         init(OM, settingsService)
         ProcessorFactory.MOD_GUI_SETTINGS.values.forEach { modSettingsTabPane?.tabs?.add(it.createModSettingsTab()) }
         logsTxt?.let { TxtLogger.init(it) }
