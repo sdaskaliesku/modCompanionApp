@@ -27,7 +27,7 @@ class Main : Application() {
     }
 
     companion object {
-        const val VERSION = 0.1
+        const val VERSION = 1.5
         @JvmStatic
         fun main(args: Array<String>) {
             launch(Main::class.java)

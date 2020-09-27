@@ -7,15 +7,21 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.manson.fo76.Locations.itemsModInitFilter
 import com.manson.fo76.processor.ProcessorFactory
 import com.manson.fo76.processor.ProcessorFactory.init
+import com.manson.fo76.service.UpdateService
+import com.manson.fo76.service.graphql.LatestVersion
 import com.manson.fo76.settings.SettingsService
 import java.awt.Desktop
 import java.io.File
+import java.net.URI
 import javafx.application.Platform
 import javafx.beans.value.ObservableValue
+import javafx.concurrent.Task
 import javafx.event.EventHandler
 import javafx.fxml.FXML
 import javafx.scene.Cursor
+import javafx.scene.control.Alert
 import javafx.scene.control.Button
+import javafx.scene.control.MenuItem
 import javafx.scene.control.ProgressBar
 import javafx.scene.control.TabPane
 import javafx.scene.control.TextArea
@@ -55,8 +61,32 @@ class Controller {
     @FXML
     private var modSettingsTabPane: TabPane? = null
 
+    @FXML
+    private var closeBtn: MenuItem? = null
+
+    @FXML
+    private var clearLogsBtn: MenuItem? = null
+
+    @FXML
+    private var checkForUpdatesBtn: MenuItem? = null
+
+    @FXML
+    private var gitHubBtn: MenuItem? = null
+
+    @FXML
+    private var nexusBtn: MenuItem? = null
+
+    @FXML
+    private var discordBtn: MenuItem? = null
+
     private val settingsService: SettingsService = SettingsService(OM, Locations.settingsDirectory)
     private val fileChangesListener: FileChangesListener = FileChangesListener(itemsModInitFilter, OM)
+    private val updateService = UpdateService(OM)
+
+
+    private fun hasUpdate(latestVersion: LatestVersion): Boolean {
+        return Main.VERSION < latestVersion.version.toDouble()
+    }
 
 
     @FXML
@@ -64,6 +94,65 @@ class Controller {
         init(OM, settingsService)
         ProcessorFactory.MOD_GUI_SETTINGS.values.forEach { modSettingsTabPane?.tabs?.add(it.createModSettingsTab()) }
         logsTxt?.let { TxtLogger.init(it) }
+
+        val task: Task<Void?> = object : Task<Void?>() {
+            override fun call(): Void? {
+                try {
+                    val latestVersion = updateService.getLatestVersion()
+                    if (hasUpdate(latestVersion)) {
+                        TxtLogger.log("New version available: ${latestVersion.version}. Current version: ${Main.VERSION}")
+                    }
+                } catch (e: Exception) {
+                    LOGGER.error("Error checking for updates", e)
+                }
+                return null
+            }
+        }
+        Thread(task).start()
+
+        closeBtn?.onAction = EventHandler {
+            this.shutdown()
+        }
+        clearLogsBtn?.onAction = EventHandler {
+            this.logsTxt?.clear()
+        }
+        gitHubBtn?.onAction = EventHandler {
+            try {
+                Desktop.getDesktop().browse(URI(Links.GITHUB))
+            } catch (e: Exception) {
+                TxtLogger.log("Error opening link: ${e.message}")
+            }
+        }
+        discordBtn?.onAction = EventHandler {
+            try {
+                Desktop.getDesktop().browse(URI(Links.DISCORD))
+            } catch (e: Exception) {
+                TxtLogger.log("Error opening link: ${e.message}")
+            }
+        }
+        nexusBtn?.onAction = EventHandler {
+            try {
+                Desktop.getDesktop().browse(URI(Links.NEXUS))
+            } catch (e: Exception) {
+                TxtLogger.log("Error opening link: ${e.message}")
+            }
+        }
+        checkForUpdatesBtn?.onAction = EventHandler {
+            try {
+                val latestVersion = updateService.getLatestVersion()
+                var alertType = Alert.AlertType.INFORMATION
+                var alertText = "You're using most recent version!"
+                if (hasUpdate(latestVersion)) {
+                    alertText = "New version available: ${latestVersion.version}. Current version: ${Main.VERSION}"
+                    alertType = Alert.AlertType.WARNING
+                }
+                TxtLogger.log(alertText)
+                Alert(alertType, alertText).showAndWait()
+            } catch (e: Exception) {
+                LOGGER.error("Error checking for updates", e)
+                TxtLogger.log("Error checking for updates: ${e.message}")
+            }
+        }
         progressBar?.cursorProperty()?.value = Cursor.DEFAULT
         stopBtn!!.isDisable = true
         TxtLogger.log("Output directory is: ${Locations.outputDirectory.absolutePath}")
