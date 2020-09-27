@@ -20,7 +20,7 @@ class Main : Application() {
         stage.scene = scene
         stage.isResizable = false
         stage.title = "Mod Companion App v$VERSION"
-        val imgStream = loader.getResourceAsStream("favicon.ico")
+        val imgStream = loader.getResourceAsStream("favicon.png")
         val image = Image(imgStream)
         stage.icons.add(image)
         stage.show()
