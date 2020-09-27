@@ -9,7 +9,7 @@ class Fed76EnhancerController(settingsService: SettingsService) : ModGuiControll
     override fun createModSettingsTab(): Tab {
         val tab = Tab("Fed76 enhancer mod")
         tab.isClosable = false
-        tab.content = Label("Coming soon")
+        tab.content = Label("No settings available for this mod")
         return tab
     }
 }
