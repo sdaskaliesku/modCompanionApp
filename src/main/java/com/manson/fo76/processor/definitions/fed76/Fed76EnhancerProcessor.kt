@@ -56,7 +56,7 @@ class Fed76EnhancerProcessor(private val objectMapper: ObjectMapper, settingsSer
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(Fed76EnhancerProcessor::class.java)
-        private const val MOD_NAME = "Fed76Enhancer"
+        const val MOD_NAME = "Fed76Enhancer"
         private const val TEST_KEY = "test"
 
         private const val outputFileName = "${MOD_NAME}.json"
