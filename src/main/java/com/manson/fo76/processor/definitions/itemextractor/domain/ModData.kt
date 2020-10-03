@@ -2,6 +2,7 @@ package com.manson.fo76.processor.definitions.itemextractor.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonTypeName
+import com.manson.domain.itemextractor.CharacterInventory
 import com.manson.fo76.processor.BaseModEntity
 import java.util.Date
 import org.apache.commons.collections4.MapUtils

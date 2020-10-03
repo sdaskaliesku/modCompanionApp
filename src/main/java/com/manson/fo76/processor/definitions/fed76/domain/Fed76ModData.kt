@@ -1,8 +1,8 @@
 package com.manson.fo76.processor.definitions.fed76.domain
 
 import com.fasterxml.jackson.annotation.JsonTypeName
+import com.manson.domain.fo76.items.ItemDescriptor
 import com.manson.fo76.processor.BaseModEntity
-import com.manson.fo76.processor.definitions.itemextractor.domain.ItemDescriptor
 import java.util.Date
 import org.apache.commons.collections4.MapUtils
 import org.apache.commons.lang3.builder.ToStringBuilder

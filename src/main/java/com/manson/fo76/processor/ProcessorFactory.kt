@@ -7,22 +7,24 @@ import com.manson.fo76.processor.definitions.itemextractor.ItemExtractorControll
 import com.manson.fo76.processor.definitions.itemextractor.ItemExtractorProcessor
 import com.manson.fo76.processor.definitions.logger.LoggerController
 import com.manson.fo76.processor.definitions.logger.LoggerProcessor
+import com.manson.fo76.processor.definitions.pricecheck.PriceCheckController
+import com.manson.fo76.processor.definitions.pricecheck.PriceCheckProcessor
 import com.manson.fo76.processor.gui.ModGuiController
 import com.manson.fo76.settings.SettingsService
-import java.util.HashMap
 
 object ProcessorFactory {
     // TODO: Create smth like ModDescriptor and hold Processor and Controller inside
     @JvmField
-    val MOD_PROCESSORS: MutableMap<String, BaseProcessor> = HashMap()
+    val MOD_PROCESSORS: MutableMap<String, BaseProcessor> = LinkedHashMap()
 
     @JvmField
-    val MOD_GUI_SETTINGS: MutableMap<String, ModGuiController> = HashMap()
+    val MOD_GUI_SETTINGS: MutableMap<String, ModGuiController> = LinkedHashMap()
 
     fun init(objectMapper: ObjectMapper, settingsService: SettingsService) {
         addProcessor(ItemExtractorProcessor.MOD_NAME, ItemExtractorProcessor(objectMapper, settingsService), ItemExtractorController(settingsService))
-        addProcessor(LoggerProcessor.MOD_NAME, LoggerProcessor(objectMapper, settingsService), LoggerController(settingsService))
+//        addProcessor(LoggerProcessor.MOD_NAME, LoggerProcessor(objectMapper, settingsService), LoggerController(settingsService))
         addProcessor(Fed76EnhancerProcessor.MOD_NAME, Fed76EnhancerProcessor(objectMapper, settingsService), Fed76EnhancerController(settingsService))
+        addProcessor(PriceCheckProcessor.MOD_NAME, PriceCheckProcessor(objectMapper, settingsService), PriceCheckController(settingsService))
     }
 
     fun <T : BaseProcessor> addProcessor(name: String, baseProcessor: T, modGuiController: ModGuiController) {

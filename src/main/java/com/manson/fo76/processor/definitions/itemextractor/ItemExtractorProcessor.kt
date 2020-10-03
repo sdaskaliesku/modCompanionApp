@@ -3,12 +3,12 @@ package com.manson.fo76.processor.definitions.itemextractor
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.base.Objects
 import com.google.common.hash.Hashing
+import com.manson.domain.itemextractor.CharacterInventory
+import com.manson.domain.itemextractor.ItemDescriptor
 import com.manson.fo76.Locations
 import com.manson.fo76.TxtLogger
 import com.manson.fo76.processor.BaseModEntity
 import com.manson.fo76.processor.BaseProcessor
-import com.manson.fo76.processor.definitions.itemextractor.domain.CharacterInventory
-import com.manson.fo76.processor.definitions.itemextractor.domain.ItemDescriptor
 import com.manson.fo76.processor.definitions.itemextractor.domain.ModData
 import com.manson.fo76.settings.SettingsService
 import java.io.File
@@ -21,6 +21,10 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
 
     private fun getSettings(): ItemExtractorSettings {
         return settingsService.settings.itemExtractorSettings
+    }
+
+    private fun shouldAnonymize(): Boolean {
+        return getSettings().anonymizeItems || getSettings().anonymizeAccount || getSettings().anonymizeCharacter;
     }
 
     @Suppress("UnstableApiUsage")
@@ -36,10 +40,16 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
     private fun anonymizeData(modData: ModData): ModData {
         for (entry in modData.characterInventories) {
             val characterInventory = entry.value
-            characterInventory.accountInfoData.name = characterInventory.accountInfoData.name.let { hash(it) }
-            characterInventory.characterInfoData.name = characterInventory.characterInfoData.name.let { hash(it) }
-            characterInventory.playerInventory.forEach { it.serverHandleId = hash(it.serverHandleId) }
-            characterInventory.stashInventory.forEach { it.serverHandleId = hash(it.serverHandleId) }
+            if (getSettings().anonymizeAccount) {
+                characterInventory.accountInfoData.name = characterInventory.accountInfoData.name.let { hash(it) }
+            }
+            if (getSettings().anonymizeCharacter) {
+                characterInventory.characterInfoData.name = characterInventory.characterInfoData.name.let { hash(it) }
+            }
+            if (getSettings().anonymizeItems) {
+                characterInventory.playerInventory.forEach { it.serverHandleId = hash(it.serverHandleId) }
+                characterInventory.stashInventory.forEach { it.serverHandleId = hash(it.serverHandleId) }
+            }
         }
         return modData
     }
@@ -119,7 +129,7 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
 
     private fun dumpData(file: File, obj: ModData) {
         try {
-            if (getSettings().anonymize) {
+            if (shouldAnonymize()) {
                 anonymizeData(obj)
             }
             objectMapper.writer().withDefaultPrettyPrinter().writeValue(file, obj)
@@ -129,7 +139,7 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
         }
     }
 
-    private fun mergeItems(oldItems: ArrayList<ItemDescriptor>, newItems: ArrayList<ItemDescriptor>): ArrayList<ItemDescriptor> {
+    private fun mergeItems(oldItems: MutableList<ItemDescriptor>, newItems: MutableList<ItemDescriptor>): ArrayList<ItemDescriptor> {
         val newInventoryItems: HashSet<ItemDescriptor> = HashSet()
         oldItems.let { newInventoryItems.addAll(it) }
         newItems.let { newInventoryItems.addAll(it) }

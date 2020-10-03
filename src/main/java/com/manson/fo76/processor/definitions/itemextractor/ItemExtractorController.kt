@@ -14,17 +14,37 @@ class ItemExtractorController(settingsService: SettingsService) : ModGuiControll
     private var initialLayoutY = 14.0
     private val layoutX = 16.0
     private fun createCheckBoxes(): List<CheckBox> {
-        val anonymizeCheckBox = CheckBox("Anonymize data")
-        anonymizeCheckBox.layoutX = layoutX
-        anonymizeCheckBox.layoutY = initialLayoutY
+        val anonymizeCharCheckBox = CheckBox("Anonymize character name")
+        anonymizeCharCheckBox.layoutX = layoutX
+        anonymizeCharCheckBox.layoutY = initialLayoutY
         initialLayoutY += layoutYStep
-        anonymizeCheckBox.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, newValue: Boolean ->
-            settingsService.settings.itemExtractorSettings.anonymize = newValue
+        anonymizeCharCheckBox.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, newValue: Boolean ->
+            settingsService.settings.itemExtractorSettings.anonymizeCharacter = newValue
             settingsService.save()
         }
-        anonymizeCheckBox.isSelected = settingsService.settings.itemExtractorSettings.anonymize
+        anonymizeCharCheckBox.isSelected = settingsService.settings.itemExtractorSettings.anonymizeCharacter
 
-        return listOf(anonymizeCheckBox)
+        val anonymizeAccCheckBox = CheckBox("Anonymize account name")
+        anonymizeAccCheckBox.layoutX = layoutX
+        anonymizeAccCheckBox.layoutY = initialLayoutY
+        initialLayoutY += layoutYStep
+        anonymizeAccCheckBox.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, newValue: Boolean ->
+            settingsService.settings.itemExtractorSettings.anonymizeAccount = newValue
+            settingsService.save()
+        }
+        anonymizeAccCheckBox.isSelected = settingsService.settings.itemExtractorSettings.anonymizeAccount
+
+        val anonymizeItemsCheckBox = CheckBox("Anonymize item id's")
+        anonymizeItemsCheckBox.layoutX = layoutX
+        anonymizeItemsCheckBox.layoutY = initialLayoutY
+        initialLayoutY += layoutYStep
+        anonymizeItemsCheckBox.selectedProperty().addListener { _: ObservableValue<out Boolean>, _: Boolean, newValue: Boolean ->
+            settingsService.settings.itemExtractorSettings.anonymizeItems = newValue
+            settingsService.save()
+        }
+        anonymizeItemsCheckBox.isSelected = settingsService.settings.itemExtractorSettings.anonymizeItems
+
+        return listOf(anonymizeCharCheckBox, anonymizeAccCheckBox, anonymizeItemsCheckBox)
     }
 
     private fun createRadioButtons(): List<RadioButton> {
