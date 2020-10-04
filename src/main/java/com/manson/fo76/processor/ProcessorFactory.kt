@@ -5,8 +5,6 @@ import com.manson.fo76.processor.definitions.fed76.Fed76EnhancerController
 import com.manson.fo76.processor.definitions.fed76.Fed76EnhancerProcessor
 import com.manson.fo76.processor.definitions.itemextractor.ItemExtractorController
 import com.manson.fo76.processor.definitions.itemextractor.ItemExtractorProcessor
-import com.manson.fo76.processor.definitions.logger.LoggerController
-import com.manson.fo76.processor.definitions.logger.LoggerProcessor
 import com.manson.fo76.processor.definitions.pricecheck.PriceCheckController
 import com.manson.fo76.processor.definitions.pricecheck.PriceCheckProcessor
 import com.manson.fo76.processor.gui.ModGuiController
@@ -22,9 +20,9 @@ object ProcessorFactory {
 
     fun init(objectMapper: ObjectMapper, settingsService: SettingsService) {
         addProcessor(ItemExtractorProcessor.MOD_NAME, ItemExtractorProcessor(objectMapper, settingsService), ItemExtractorController(settingsService))
+        addProcessor(PriceCheckProcessor.MOD_NAME, PriceCheckProcessor(objectMapper, settingsService), PriceCheckController(settingsService))
 //        addProcessor(LoggerProcessor.MOD_NAME, LoggerProcessor(objectMapper, settingsService), LoggerController(settingsService))
         addProcessor(Fed76EnhancerProcessor.MOD_NAME, Fed76EnhancerProcessor(objectMapper, settingsService), Fed76EnhancerController(settingsService))
-        addProcessor(PriceCheckProcessor.MOD_NAME, PriceCheckProcessor(objectMapper, settingsService), PriceCheckController(settingsService))
     }
 
     fun <T : BaseProcessor> addProcessor(name: String, baseProcessor: T, modGuiController: ModGuiController) {

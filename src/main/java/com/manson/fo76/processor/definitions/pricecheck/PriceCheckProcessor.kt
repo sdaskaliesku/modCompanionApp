@@ -40,15 +40,14 @@ class PriceCheckProcessor(private val objectMapper: ObjectMapper, settingsServic
     private fun mergeData(modEntity: ModData): ModData {
         val file = getSingleOutputFile()
         if (!file.exists()) {
-            dumpData(file, modEntity)
-            return ModData()
+            return modEntity
         }
         val previousDump = readObject(file.toPath())
         if (!previousDump.characterInventories.containsKey(TEST_KEY)) {
             previousDump.characterInventories[TEST_KEY] = CharacterInventory()
         }
         modEntity.characterInventories[TEST_KEY]?.let { previousDump.characterInventories[TEST_KEY]?.stashInventory?.addAll(it.stashInventory) }
-        return modEntity
+       return previousDump
     }
 
     override fun getName(): String {
