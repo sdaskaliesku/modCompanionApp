@@ -3,8 +3,8 @@ package com.manson.fo76.processor
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import com.manson.domain.itemextractor.ModData
 import com.manson.fo76.processor.definitions.fed76.domain.Fed76ModData
+import com.manson.fo76.processor.definitions.itemextractor.domain.ModData
 import com.manson.fo76.processor.definitions.logger.domain.LoggerModData
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "modName", visible = true)
