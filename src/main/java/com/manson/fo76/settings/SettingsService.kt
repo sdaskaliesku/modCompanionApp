@@ -12,7 +12,7 @@ class SettingsService(private val objectMapper: ObjectMapper, private val settin
 
     fun save() {
         try {
-            objectMapper.writeValue(settingsFile, settings)
+            objectMapper.writer().withDefaultPrettyPrinter().writeValue(settingsFile, settings)
         } catch (e: Exception) {
             LOGGER.error("Error while saving settings {}", settingsFile, e)
         }

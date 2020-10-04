@@ -6,30 +6,49 @@ import com.manson.fo76.Locations
 import com.manson.fo76.TxtLogger
 import com.manson.fo76.processor.BaseModEntity
 import com.manson.fo76.processor.BaseProcessor
+import com.manson.fo76.processor.definitions.itemextractor.DumpMode
 import com.manson.fo76.processor.definitions.itemextractor.domain.ModData
 import com.manson.fo76.settings.SettingsService
 import java.io.File
 import java.nio.file.Path
+import java.text.SimpleDateFormat
+import java.util.Date
 import org.slf4j.LoggerFactory
 
 class PriceCheckProcessor(private val objectMapper: ObjectMapper, settingsService: SettingsService) : BaseProcessor(MOD_NAME, settingsService) {
 
+    private fun getSettings(): PriceCheckSettings {
+        return settingsService.settings.priceCheckSettings
+    }
 
     override fun processFileChanges(modEntity: BaseModEntity) {
         if (modEntity !is ModData || modEntity.isEmpty()) {
             return
         }
-        val file = getOutputFile()
+        var objectToDump = modEntity
+        var dumpLocation: File = getSingleOutputFile()
+        if (getSettings().dumpMode == DumpMode.CREATE_NEW) {
+            objectToDump = modEntity
+            dumpLocation = getMultipleOutputFile()
+        } else if (getSettings().dumpMode == DumpMode.APPEND) {
+            objectToDump = mergeData(modEntity)
+            dumpLocation = getSingleOutputFile()
+        }
+        dumpData(dumpLocation, objectToDump)
+    }
+
+    private fun mergeData(modEntity: ModData): ModData {
+        val file = getSingleOutputFile()
         if (!file.exists()) {
             dumpData(file, modEntity)
-            return
+            return ModData()
         }
         val previousDump = readObject(file.toPath())
         if (!previousDump.characterInventories.containsKey(TEST_KEY)) {
             previousDump.characterInventories[TEST_KEY] = CharacterInventory()
         }
         modEntity.characterInventories[TEST_KEY]?.let { previousDump.characterInventories[TEST_KEY]?.stashInventory?.addAll(it.stashInventory) }
-        dumpData(file, previousDump)
+        return modEntity
     }
 
     override fun getName(): String {
@@ -69,9 +88,16 @@ class PriceCheckProcessor(private val objectMapper: ObjectMapper, settingsServic
                 return dir
             }
 
-        private fun getOutputFile(): File {
+        private fun getSingleOutputFile(): File {
             return File(outputDir, outputFileName)
         }
+
+        private fun getMultipleOutputFile(): File {
+            val fileName = MOD_NAME + "_" + SDF.format(Date()) + ".json"
+            return File(outputDir, fileName)
+        }
+
+        private val SDF = SimpleDateFormat("yyyyMMdd_HHmmss")
     }
 
 
