@@ -24,7 +24,8 @@ class TxtLogger private constructor(private val textArea: TextArea) {
         }
 
         fun log(txt: String) {
-            INSTANCE!!.append(txt)
+            println(txt)
+            INSTANCE?.append(txt)
         }
     }
 }

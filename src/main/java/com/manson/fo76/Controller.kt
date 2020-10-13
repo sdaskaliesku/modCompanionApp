@@ -34,8 +34,11 @@ class Controller {
         private val LOGGER = LoggerFactory.getLogger(Controller::class.java)
 
         init {
-            OM.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
-            OM.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+            OM.getSerializationConfig().getDefaultVisibilityChecker()
+                    .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+                    .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withCreatorVisibility(JsonAutoDetect.Visibility.NONE);
             OM.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, true)
         }
     }

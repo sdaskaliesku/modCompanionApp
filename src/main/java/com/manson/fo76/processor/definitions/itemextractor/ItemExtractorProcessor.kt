@@ -24,7 +24,7 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
     }
 
     private fun shouldAnonymize(): Boolean {
-        return getSettings().anonymizeItems || getSettings().anonymizeAccount || getSettings().anonymizeCharacter;
+        return getSettings().anonymizeItems || getSettings().anonymizeAccount || getSettings().anonymizeCharacter
     }
 
     @Suppress("UnstableApiUsage")

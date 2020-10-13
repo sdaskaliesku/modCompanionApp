@@ -1,0 +1,213 @@
+{
+  "version": 0.6,
+  "modName": "ItemExtractorMod",
+  "characterInventories": {
+    "MANSON": {
+      "playerInventory": [
+        {
+          "text": "Plan: Fatman",
+          "serverHandleId": 0,
+          "count": 1,
+          "itemValue": 1500,
+          "equipState": 0,
+          "isWeightless": false,
+          "filterFlag": 128,
+          "currentHealth": -1,
+          "maximumHealth": 100,
+          "durability": 0,
+          "itemLevel": 0,
+          "quickSwapAmmo": 0,
+          "canFavorite": false,
+          "favorite": false,
+          "isLegendary": false,
+          "numLegendaryStars": 0,
+          "taggedForSearch": false,
+          "scrapAllowed": false,
+          "isAutoScrappable": false,
+          "canGoIntoScrapStash": false,
+          "quickSwap": false,
+          "isTradable": true,
+          "singleItemTransfer": false,
+          "isQuestItem": false,
+          "isSharedQuestItem": false,
+          "weight": 0.25,
+          "weaponDisplayAccuracy": 0,
+          "weaponDisplayRange": 0,
+          "weaponDisplayRateOfFire": 0,
+          "damage": 0,
+          "isCurrency": false,
+          "isOffered": false,
+          "offerValue": 0,
+          "isRequested": false,
+          "declineReason": -1,
+          "isSpoiled": false,
+          "isLearnedRecipe": true,
+          "isSetItem": false,
+          "isSetBonusActive": false,
+          "unknownTest": 1,
+          "vendingData": {
+            "machineType": 0,
+            "price": 0,
+            "isVendedOnOtherMachine": false
+          },
+          "ItemCardEntries": [
+            {
+              "text": "$wt",
+              "value": "0.25",
+              "damageType": 0,
+              "difference": 0,
+              "diffRating": 0,
+              "precision": 0,
+              "showAsDescription": false,
+              "duration": 0,
+              "components": []
+            },
+            {
+              "text": "$val",
+              "value": "1500",
+              "damageType": 0,
+              "difference": 0,
+              "diffRating": 0,
+              "precision": 0,
+              "showAsDescription": false,
+              "duration": 0,
+              "components": []
+            }
+          ],
+          "ModCardEntries": [],
+          "rarity": -1
+        }
+      ],
+      "stashInventory": [],
+      "AccountInfoData": {
+        "name": "manson_ew2",
+        "avatarId": "Textures/ATX/Storefront/Player/PlayerIcons/ATX_PlayerIcon_Perks_02.dds",
+        "accountId": {
+          "hi": 0,
+          "lo": 0
+        },
+        "isLoggedIn": false,
+        "hasZeus": false,
+        "isOnPrivateWorld": false,
+        "isPrivateWorldOwner": false,
+        "worldType": 1
+      },
+      "CharacterInfoData": {
+        "name": "MANSON",
+        "isDead": false,
+        "isAlive": true,
+        "entityID": 0,
+        "level": 321,
+        "currWeight": 729.1253662109375,
+        "maxWeight": 368.7461853027344,
+        "absoluteWeightLimit": 1868.746215820313,
+        "bounty": 0,
+        "wanted": false,
+        "STR": 16,
+        "PER": 11,
+        "END": 2,
+        "CHA": 3,
+        "INT": 18,
+        "AGI": 13,
+        "LCK": 7,
+        "STR_base": 15,
+        "PER_base": 3,
+        "END_base": 4,
+        "CHA_base": 4,
+        "INT_base": 14,
+        "AGI_base": 8,
+        "LCK_base": 8,
+        "STR_bonus": 0,
+        "PER_bonus": 0,
+        "END_bonus": 0,
+        "CHA_bonus": 0,
+        "INT_bonus": 0,
+        "AGI_bonus": 3,
+        "LCK_bonus": 0,
+        "STR_description": "Strength is a measure of your raw physical power. It affects how much you can carry, and the damage of all melee attacks.",
+        "PER_description": "Perception affects your awareness of nearby enemies, your ability to detect stealthy movement, and your weapon accuracy in V.A.T.S.",
+        "END_description": "Endurance is a measure of your overall physical fitness. It affects your total Health, the Action Point drain from sprinting, and your resistance to disease.",
+        "CHA_description": "Charisma is your ability to lead and help others. It allows you to share higher point Perks and also affects your rewards from Group Quests and prices when you barter.",
+        "INT_description": "Intelligence is a measure of your overall mental acuity, and affects your ability to hack terminals, the condition and durability of items that you craft, and the return you get from scrapping.",
+        "AGI_description": "Agility is a measure of your overall finesse and reflexes. It affects the number of Action Points in V.A.T.S. and your ability to sneak.",
+        "LCK_description": "Luck is a measure of your general good fortune, and affects the recharge rate of Critical Hits as well as the condition and durability of items that you loot.",
+        "StimpakCount": 231,
+        "pvpLevel": 5,
+        "hasSeenPVPTutorial": true,
+        "hasSeenBabylonPerksTutorial": false,
+        "hasSeenBabylonDuplicatePerksTutorial": false,
+        "showChangePlayerIconTutorial": false,
+        "showChangePlayerIconPrompt": false,
+        "currencies": [
+          {
+            "currencyType": 0,
+            "currencyAmount": 7490,
+            "currencyMax": 30000,
+            "currencyName": "Caps"
+          },
+          {
+            "currencyType": 5,
+            "currencyAmount": 88,
+            "currencyMax": 5000,
+            "currencyName": "Perk Coins"
+          },
+          {
+            "currencyType": 4,
+            "currencyAmount": 4860,
+            "currencyMax": 5000,
+            "currencyName": "Gold Bullion"
+          },
+          {
+            "currencyType": 0,
+            "currencyAmount": 0,
+            "currencyMax": 30000,
+            "currencyName": "Overseer Tickets"
+          },
+          {
+            "currencyType": 0,
+            "currencyAmount": 140,
+            "currencyMax": 65536,
+            "currencyName": ""
+          },
+          {
+            "currencyType": 0,
+            "currencyAmount": 0,
+            "currencyMax": 65536,
+            "currencyName": ""
+          },
+          {
+            "currencyType": 0,
+            "currencyAmount": 0,
+            "currencyMax": 65536,
+            "currencyName": ""
+          },
+          {
+            "currencyType": 0,
+            "currencyAmount": 0,
+            "currencyMax": 1,
+            "currencyName": "Babylon Tutorial Flags"
+          },
+          {
+            "currencyType": 3,
+            "currencyAmount": 0,
+            "currencyMax": 100,
+            "currencyName": "Tadpole Badges"
+          },
+          {
+            "currencyType": 2,
+            "currencyAmount": 0,
+            "currencyMax": 100,
+            "currencyName": "Possum Badges"
+          },
+          {
+            "currencyType": 1,
+            "currencyAmount": 369,
+            "currencyMax": 1000,
+            "currencyName": "Legendary Scrips"
+          }
+        ],
+        "overseerRank": 0
+      }
+    }
+  }
+}

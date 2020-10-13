@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory
 
 class SettingsService(private val objectMapper: ObjectMapper, private val settingsDir: File) {
     var settings: Settings
-        private set
+
     private val settingsFile: File
         get() = File(settingsDir, SETTINGS_FILE_NAME)
 
