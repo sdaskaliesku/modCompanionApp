@@ -1,0 +1,2 @@
+version=1.77
+mvn deploy:deploy-file -Dfile=target/ModCompanion-${version}.zip -DrepositoryId=github -Durl=https://maven.pkg.github.com/sdaskaliesku/modCompanionApp -DgroupId=com.manson.fo76 -DartifactId=modcompanion -Dversion=${version}

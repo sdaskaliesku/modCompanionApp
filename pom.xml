@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.manson.fo76</groupId>
-  <artifactId>modCompanion</artifactId>
+  <artifactId>modcompanion</artifactId>
   <version>1.72-SNAPSHOT</version>
 
   <repositories>
