@@ -4,7 +4,7 @@
 
   <groupId>com.manson.fo76</groupId>
   <artifactId>modCompanion</artifactId>
-  <version>1.8-SNAPSHOT</version>
+  <version>1.71-SNAPSHOT</version>
 
   <repositories>
     <repository>
