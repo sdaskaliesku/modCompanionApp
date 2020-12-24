@@ -28,7 +28,7 @@ class Main : Application() {
 
     companion object {
 //        TODO: read version from pom.xml instead of hard-coding it
-        const val VERSION = 1.7
+        const val VERSION = 1.73
         @JvmStatic
         fun main(args: Array<String>) {
             launch(Main::class.java)
