@@ -3,7 +3,6 @@ package com.manson.fo76.processor
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import com.manson.fo76.processor.definitions.fed76.domain.Fed76ModData
 import com.manson.fo76.processor.definitions.itemextractor.domain.ModData
 import com.manson.fo76.processor.definitions.logger.domain.LoggerModData
 
@@ -11,7 +10,6 @@ import com.manson.fo76.processor.definitions.logger.domain.LoggerModData
 @JsonSubTypes(
         JsonSubTypes.Type(value = ModData::class, name = "ItemExtractorMod"),
         JsonSubTypes.Type(value = ModData::class, name = "VendorPriceCheck"),
-        JsonSubTypes.Type(value = Fed76ModData::class, name = "Fed76Enhancer"),
         JsonSubTypes.Type(value = LoggerModData::class, name = "LoggerMod")
 )
 @JsonIgnoreProperties(ignoreUnknown = true)

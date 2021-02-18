@@ -3,7 +3,8 @@
   "modName": "ItemExtractorMod",
   "characterInventories": {
     "MANSON": {
-      "playerInventory": [
+      "playerInventory": [],
+      "stashInventory": [
         {
           "text": "Plan: Fatman",
           "serverHandleId": 0,
@@ -76,82 +77,8 @@
           ],
           "ModCardEntries": [],
           "rarity": -1
-        },
-        {
-          "text": "aaaaaaaaa",
-          "serverHandleId": 0,
-          "count": 1,
-          "itemValue": 1500,
-          "equipState": 0,
-          "isWeightless": false,
-          "filterFlag": 128,
-          "currentHealth": -1,
-          "maximumHealth": 100,
-          "durability": 0,
-          "itemLevel": 0,
-          "quickSwapAmmo": 0,
-          "canFavorite": false,
-          "favorite": false,
-          "isLegendary": false,
-          "numLegendaryStars": 0,
-          "taggedForSearch": false,
-          "scrapAllowed": false,
-          "isAutoScrappable": false,
-          "canGoIntoScrapStash": false,
-          "quickSwap": false,
-          "isTradable": true,
-          "singleItemTransfer": false,
-          "isQuestItem": false,
-          "isSharedQuestItem": false,
-          "weight": 0.25,
-          "weaponDisplayAccuracy": 0,
-          "weaponDisplayRange": 0,
-          "weaponDisplayRateOfFire": 0,
-          "damage": 0,
-          "isCurrency": false,
-          "isOffered": false,
-          "offerValue": 0,
-          "isRequested": false,
-          "declineReason": -1,
-          "isSpoiled": false,
-          "isLearnedRecipe": true,
-          "isSetItem": false,
-          "isSetBonusActive": false,
-          "unknownTest": 1,
-          "vendingData": {
-            "machineType": 0,
-            "price": 0,
-            "isVendedOnOtherMachine": false
-          },
-          "ItemCardEntries": [
-            {
-              "text": "$wt",
-              "value": "0.25",
-              "damageType": 0,
-              "difference": 0,
-              "diffRating": 0,
-              "precision": 0,
-              "showAsDescription": false,
-              "duration": 0,
-              "components": []
-            },
-            {
-              "text": "$val",
-              "value": "1500",
-              "damageType": 0,
-              "difference": 0,
-              "diffRating": 0,
-              "precision": 0,
-              "showAsDescription": false,
-              "duration": 0,
-              "components": []
-            }
-          ],
-          "ModCardEntries": [],
-          "rarity": -1
         }
       ],
-      "stashInventory": [],
       "AccountInfoData": {
         "name": "manson_ew2"
       },

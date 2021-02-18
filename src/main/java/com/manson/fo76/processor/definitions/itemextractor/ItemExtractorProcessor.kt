@@ -3,8 +3,8 @@ package com.manson.fo76.processor.definitions.itemextractor
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.base.Objects
 import com.google.common.hash.Hashing
+import com.manson.domain.fo76.ItemDescriptor
 import com.manson.domain.itemextractor.CharacterInventory
-import com.manson.domain.itemextractor.ItemDescriptor
 import com.manson.fo76.Locations
 import com.manson.fo76.TxtLogger
 import com.manson.fo76.processor.BaseModEntity
