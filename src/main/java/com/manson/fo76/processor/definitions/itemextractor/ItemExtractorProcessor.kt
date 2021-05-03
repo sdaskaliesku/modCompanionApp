@@ -164,7 +164,7 @@ class ItemExtractorProcessor(private val objectMapper: ObjectMapper, settingsSer
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(ItemExtractorProcessor::class.java)
-        const val MOD_NAME = "ItemExtractorMod"
+        const val MOD_NAME = "Invent-O-Matic-Extractor"
 
         private const val outputFileName = "${MOD_NAME}.json"
 

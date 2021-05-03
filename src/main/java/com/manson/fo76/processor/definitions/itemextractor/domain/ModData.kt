@@ -9,7 +9,7 @@ import org.apache.commons.collections4.MapUtils
 import org.apache.commons.lang3.builder.ToStringBuilder
 import org.apache.commons.lang3.builder.ToStringStyle
 
-@JsonTypeName("ItemExtractorMod")
+@JsonTypeName("Invent-O-Matic-Extractor")
 @JsonIgnoreProperties(ignoreUnknown = true)
 class ModData : BaseModEntity() {
     var version: Double = 0.0

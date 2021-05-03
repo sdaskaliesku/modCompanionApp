@@ -75,7 +75,7 @@ class PriceCheckProcessor(private val objectMapper: ObjectMapper, settingsServic
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(PriceCheckProcessor::class.java)
-        const val MOD_NAME = "VendorPriceCheck"
+        const val MOD_NAME = "Invent-O-Matic-Vendor-Extractor"
         private const val TEST_KEY = "priceCheck"
 
         private const val outputFileName = "${MOD_NAME}.json"

@@ -1,6 +1,6 @@
 {
   "version": 0.6,
-  "modName": "ItemExtractorMod",
+  "modName": "Invent-O-Matic-Extractor",
   "characterInventories": {
     "MANSON": {
       "playerInventory": [],
